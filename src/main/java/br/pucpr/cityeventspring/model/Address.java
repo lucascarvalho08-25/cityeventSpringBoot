@@ -16,8 +16,9 @@ public class Address {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
-    @NotBlank
+
     @Column(name = "street")
+    @NotBlank
     private String logradouro;
     @Column(name = "complement")
     private String complemento;
@@ -33,7 +34,6 @@ public class Address {
     @Column(name = "zipCode")
     @NotBlank
     private String cep;
-    // fazer um micro serviço que buscar o cep na api e preenche os campos.
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "events_id", referencedColumnName = "id")

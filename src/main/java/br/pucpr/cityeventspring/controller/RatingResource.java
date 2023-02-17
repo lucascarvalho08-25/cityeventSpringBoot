@@ -1,7 +1,7 @@
 package br.pucpr.cityeventspring.controller;
 
-import br.pucpr.cityeventspring.model.Category;
-import br.pucpr.cityeventspring.service.CategoryService;
+import br.pucpr.cityeventspring.model.Rating;
+import br.pucpr.cityeventspring.service.RatingService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
-public class CategoryResource {
+@RequestMapping("/rating")
+public class RatingResource {
 
-    private CategoryService service;
+    private RatingService service;
 
-    public CategoryResource(CategoryService service) {
+    public RatingResource(RatingService service) {
         this.service = service;
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Category> create(@Valid @RequestBody Category c){
-        Category obj = service.create(c);
+    public ResponseEntity<Rating> create(@Valid @RequestBody Rating r){
+        Rating obj = service.create(r);
         return obj != null ? ResponseEntity.ok().body(obj) : ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/find")
-    public ResponseEntity<List<Category>> findAll(){
-        List<Category> list = service.findAll();
+    public ResponseEntity<List<Rating>> findAll(){
+        List<Rating> list = service.findAll();
         return list.size() > 0 ? ResponseEntity.ok().body(list) : ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Category> findById( @PathVariable Long id){
-        Category obj = service.findById(id);
+    public ResponseEntity<Rating> findById( @PathVariable Long id){
+        Rating obj = service.findById(id);
         return obj != null ? ResponseEntity.ok().body(obj) : ResponseEntity.notFound().build();
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Category> atualizarEndereco(@PathVariable Long id, @Valid @RequestBody Category c){
-        Category novObj = service.update(id, c);
-        return c != null ? ResponseEntity.ok().body(c) : ResponseEntity.badRequest().build();
+    public ResponseEntity<Rating> atualizarEndereco(@PathVariable Long id, @Valid @RequestBody Rating r){
+        Rating novObj = service.update(id, r);
+        return r != null ? ResponseEntity.ok().body(r) : ResponseEntity.badRequest().build();
     }
 
     @DeleteMapping("/delete/{id}")

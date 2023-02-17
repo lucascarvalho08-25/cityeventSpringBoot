@@ -37,11 +37,11 @@ public class Event {
     private boolean status;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ratings_id", referencedColumnName = "id")
+    @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Set<Rating> ratings;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "categories_id", referencedColumnName = "id")
+    @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Set<Category> categorys;
 
 
