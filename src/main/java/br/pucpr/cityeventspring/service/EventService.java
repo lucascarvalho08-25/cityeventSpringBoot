@@ -22,6 +22,7 @@ public class EventService {
     }
 
     public Event create(@Valid Event e){
+        //addressRepository.save(e.getAddress());
         return repository.save(e);
     }
 
@@ -54,6 +55,8 @@ public class EventService {
         old.setDiscription(e.getDiscription());
         old.setCategorys(e.getCategorys());
         old.setAddress(e.getAddress());
+
+        addressRepository.saveAndFlush(e.getAddress());
 
         return repository.saveAndFlush(old);
     }

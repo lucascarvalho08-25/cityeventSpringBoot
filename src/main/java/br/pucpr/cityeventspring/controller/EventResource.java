@@ -13,6 +13,8 @@ import java.util.List;
 @RequestMapping("/event")
 public class EventResource {
 
+   /* TESTES DAS FUNCIONALIDADES DOS MÉTODOS NÃO  REALIZADO, NÃO SEI SE ESSA CLASS PRESTA */
+
 
     private EventService service;
 
