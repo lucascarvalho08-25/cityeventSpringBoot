@@ -22,12 +22,6 @@ public class EventService {
     }
 
     public Event create(@Valid Event e){
-
-
-        Address address = e.getAddress();
-
-
-
         return repository.save(e);
     }
 
@@ -64,8 +58,12 @@ public class EventService {
         return repository.saveAndFlush(old);
     }
 
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         Event e = findById(id);
-        repository.delete(e);
+        if(e != null) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

@@ -37,9 +37,9 @@ public class CategoryResource {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Category> atualizarEndereco(@PathVariable Long id, @Valid @RequestBody Category c){
+    public ResponseEntity<Category> update(@PathVariable Long id, @Valid @RequestBody Category c){
         Category novObj = service.update(id, c);
-        return c != null ? ResponseEntity.ok().body(c) : ResponseEntity.badRequest().build();
+        return novObj != null ? ResponseEntity.ok().body(novObj) : ResponseEntity.badRequest().build();
     }
 
     @DeleteMapping("/delete/{id}")

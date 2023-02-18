@@ -1,7 +1,8 @@
 package br.pucpr.cityeventspring.controller;
 
-import br.pucpr.cityeventspring.model.Rating;
-import br.pucpr.cityeventspring.service.RatingService;
+import br.pucpr.cityeventspring.model.Category;
+import br.pucpr.cityeventspring.model.Event;
+import br.pucpr.cityeventspring.service.EventService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,36 +10,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rating")
-public class RatingResource {
+@RequestMapping("/event")
+public class EventResource {
 
-    private RatingService service;
 
-    public RatingResource(RatingService service) {
+    private EventService service;
+
+    public EventResource(EventService service) {
         this.service = service;
     }
 
+
     @PostMapping("/create")
-    public ResponseEntity<Rating> create(@Valid @RequestBody Rating r){
-        Rating obj = service.create(r);
+    public ResponseEntity<Event> create(@Valid @RequestBody Event e){
+        Event obj = service.create(e);
         return obj != null ? ResponseEntity.ok().body(obj) : ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/find")
-    public ResponseEntity<List<Rating>> findAll(){
-        List<Rating> list = service.findAll();
+    public ResponseEntity<List<Event>> findAll(){
+        List<Event> list = service.findAll();
         return list.size() > 0 ? ResponseEntity.ok().body(list) : ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Rating> findById( @PathVariable Long id){
-        Rating obj = service.findById(id);
+    public ResponseEntity<Event> findById( @PathVariable Long id){
+        Event obj = service.findById(id);
         return obj != null ? ResponseEntity.ok().body(obj) : ResponseEntity.notFound().build();
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Rating> update(@PathVariable Long id, @Valid @RequestBody Rating r){
-        Rating novObj = service.update(id, r);
+    public ResponseEntity<Event> update(@PathVariable Long id, @Valid @RequestBody Event e){
+        Event novObj = service.update(id, e);
         return novObj != null ? ResponseEntity.ok().body(novObj) : ResponseEntity.badRequest().build();
     }
 
@@ -46,4 +49,7 @@ public class RatingResource {
     public ResponseEntity<Boolean> delete(@PathVariable Long id){
         return service.delete(id) ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
+
+
+
 }
